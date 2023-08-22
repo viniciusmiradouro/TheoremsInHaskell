@@ -34,8 +34,12 @@ library
       src
   default-extensions:
       DataKinds
+      DefaultSignatures
       GADTs
       LambdaCase
+      NoCUSKs
+      NoNamedWildCards
+      NoStarIsType
       TemplateHaskell
       TypeFamilies
       TypeInType
