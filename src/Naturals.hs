@@ -1,11 +1,25 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
+{-# LANGUAGE NoImplicitPrelude #-}
 
 module Naturals () where
 
-import           Data.Singletons.Base.Enum (PEnum (Succ))
+import           Data.Kind               (Type)
 import           Data.Singletons.Base.TH
-import           GHC.TypeLits.Singletons
-import           Prelude.Singletons
+import           Prelude                 (Eq, undefined)
 
-theorem_1 :: SNat a -> SNat b -> Succ a + Succ b :~: Succ (Succ (a + b))
-theorem_1  = undefined
+$(singletons [d|
+  data Nat :: Type where
+    Zero :: Nat
+    Succ :: Nat -> Nat
+    deriving (Eq)
+
+  (+) :: Nat -> Nat -> Nat
+  Zero     + n = n
+  (Succ n) + m = Succ (n + m)
+  |])
+
+additionAssoc :: SNat a -> SNat b -> SNat c -> ((a + b) + c) :~: (a + (b + c))
+additionAssoc = undefined
+
+additionCommutative :: SNat a -> SNat b -> (a + b) :~: (b + a)
+additionCommutative = undefined
