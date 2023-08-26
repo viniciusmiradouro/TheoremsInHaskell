@@ -19,7 +19,9 @@ $(singletons [d|
   |])
 
 additionAssoc :: SNat a -> SNat b -> SNat c -> ((a + b) + c) :~: (a + (b + c))
-additionAssoc = undefined
+additionAssoc SZero     _ _ = Refl
+additionAssoc (SSucc a) b c = case additionAssoc a b c of
+  Refl -> Refl
 
 additionCommutative :: SNat a -> SNat b -> (a + b) :~: (b + a)
 additionCommutative = undefined
