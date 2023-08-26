@@ -19,7 +19,11 @@ $(singletons [d|
 
   (*) :: Nat -> Nat -> Nat
   Zero     * _ = Zero
-  (Succ n) * m = (n * m) + m
+  (Succ n) * m = n * m + m
+
+  antecessor :: Nat -> Nat
+  antecessor Zero     = Zero
+  antecessor (Succ n) = n
   |])
 
 additionAssoc :: SNat a -> SNat b -> SNat c -> ((a + b) + c) :~: (a + (b + c))
