@@ -1,5 +1,6 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 {-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE NoStarIsType      #-}
 
 module Naturals () where
 
@@ -33,3 +34,7 @@ additionAssoc (SSucc a) b c = case additionAssoc a b c of
 
 additionCommutative :: SNat a -> SNat b -> (a + b) :~: (b + a)
 additionCommutative = undefined
+
+multAssoc :: SNat a -> SNat b -> SNat c -> (a * b) * c :~: a * (b * c)
+multAssoc SZero     _ _ = Refl
+multAssoc (SSucc a) b c = undefined -- It seems that proving distributivity helps
