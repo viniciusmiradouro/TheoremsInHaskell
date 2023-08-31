@@ -4,7 +4,7 @@
 
 module Naturals () where
 
-import           Algebra                 (Magma (..))
+import           Algebra                 (Magma (..), Semigroup (..))
 import           Data.Kind               (Type)
 import           Data.Singletons.Base.TH
 import           Prelude                 (Eq)
@@ -43,6 +43,8 @@ instance Magma Nat where
   type a <> b = a + b
   (%<>) = (%+)
 
-multAssoc :: SNat a -> SNat b -> SNat c -> (a * b) * c :~: a * (b * c)
-multAssoc SZero     _ _ = Refl
-multAssoc (SSucc a) b c = undefined -- It seems that proving distributivity helps
+---------- Semigroup on Addition ----------
+
+instance Magma Nat => Semigroup Nat where
+  assoc = additionAssoc
+
