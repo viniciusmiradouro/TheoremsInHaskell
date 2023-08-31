@@ -1,12 +1,14 @@
 {-# OPTIONS_GHC -Wno-unused-top-binds #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Logic () where
+module Logic
+  (
+  ) where
 
-import           Data.Type.Equality
-import           Data.Void
-import           GHC.Stack          (HasCallStack)
-import           Prelude            (Either (..), fst, snd, undefined, ($), (.))
+import Data.Type.Equality
+import Data.Void
+import GHC.Stack          ( HasCallStack )
+import Prelude            ( Either (..), fst, snd, undefined, ($), (.) )
 
 --------------------------------
 ------ Rules of Inference ------
